@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, SafeAreaView, ScrollView } from 'react-native';
-// import { useNavigation } from '@react-navigation/native';
+import { View, Text,  Image, SafeAreaView, } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import GradientText from "react-native-gradient-texts";
 import MenuItem from './MenuItem';
 import HomeStyle from '../../styles/HomeStyle';
 
 const HomeScreen = () => {
-//   const navigation = useNavigation();
+const navigation = useNavigation();
 
   return (
     <View>
@@ -51,7 +51,7 @@ const HomeScreen = () => {
                     icon={require('../../assets/icons/calendar.png')}
                     title="Événements à suivre..."
                     subtitle="Créer le moment spirituel partagé avec tous les membres de la communauté et aux visiteurs souhaitant participer à une expérience de louange et d'adoration."
-                    onPress={() => console.log('Events')}
+                    onPress={() => navigation.navigate('Event')}
                     />
 
                 <MenuItem

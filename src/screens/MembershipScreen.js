@@ -16,9 +16,7 @@ const MembershipScreen = () => {
         style={membershipStyles.topRightImage}
       />
       <View style={membershipStyles.overlay}>
-        <ScrollView style={membershipStyles.container}>
           <MembershipForm />
-        </ScrollView>
       </View>
     </LinearGradient>
   );

@@ -1,5 +1,4 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { COLORS } from '../constants/colors';
 
 const { width, height } = Dimensions.get('window');
 
@@ -9,7 +8,8 @@ const OVERLAY_HEIGHT = height * 0.90;
 export const membershipStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    width:width,
+    height: height
   },
   BackGroundView :{
     width : width,
@@ -38,8 +38,11 @@ export const membershipStyles = StyleSheet.create({
     top: "-5%", 
     alignItems: 'center',  
   },
+  
   BlocContainer: {
-    top: "5%" 
+    top: "0%",
+    width:"100%",
+    height:"95%",
   },
   subtitle: {
     marginBottom: "3%",
@@ -47,47 +50,39 @@ export const membershipStyles = StyleSheet.create({
     lineHeight: 15,
     marginHorizontal: "10%",
     fontSize : 10,
+    padding:16
   },
-  
-  phoneInputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginHorizontal: "12%",
-    borderRadius: 10,
-    gap:"-5%",
-    top:"-7%"
+
+  blocInput:{
+    top:"-6%"
   },
-  
-  phoneLabel: {
-    fontSize: 12,
-    color: '#333',
-    marginBottom: 5,
-  },
-  
-  countryCodePicker: {
-    alignContent:"center",
-    height: "23%",
-    width: "100%",
+
+  phoneInputContainer:{
+    flexDirection:"row",
+    borderRadius:10,
     borderWidth: 1,
+    width : "75%",
     borderColor: '#bf89f7',
-    borderRadius: 10,
-    fontSize: 12,
-    backgroundColor: COLORS.white,
-    top:"-3%",
+    marginHorizontal:"12%",
+  
+  },
+  label:{
+    fontSize:10
+  },
+
+  countryButton:{
+    flexDirection:"row",
+    alignItems:"center",
+    columnGap:"5%",
+    marginHorizontal:"3%"
   },
   
-  label: {
-    fontSize: 12,
-    marginBottom: 5,
-    color: '#333',
-    marginHorizontal:"ù%",
-    top:"-4%"
-  },
+
 
   genderContainer: {
     flexDirection: 'row',
     marginHorizontal: "12%",
-    top:"-12%"
+    top:"3%"
   },
   
   genderLabel: {
@@ -145,22 +140,23 @@ export const membershipStyles = StyleSheet.create({
     overflow: 'hidden', 
   },
   photoSection: {
-    top:"-10%",
+    top:"4%",
   },
   photoButtons: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
     marginBottom: "2%",
-    marginHorizontal: "10%",
+    marginHorizontal: "12%",
     gap: "4%",
+    marginVertical:"2%"
   },
   
   termsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: "-8%",
-    marginHorizontal: "10%",
+    marginHorizontal: "12%",
+    top:"8%"
   },
 
   checkbox: {
@@ -189,11 +185,14 @@ export const membershipStyles = StyleSheet.create({
     color: '#1E90FF',
   },
   termsText :{
-    fontSize :12
+    fontSize :12,
+    
+
   },
   link: {
     color: '#1E90FF',
     textDecorationLine: 'underline',
-    fontSize:12
+    fontSize:12,
+    
   },
 });

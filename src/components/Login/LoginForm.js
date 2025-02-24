@@ -13,9 +13,23 @@ const LoginForm = () => {
 
   const handleLogin = () => {
     if (validateForm()) {
-      console.log('Username:', username);
-      console.log('Password:', password);
-      Alert.alert('Connexion réussie', 'Vous êtes maintenant connecté.');
+      // Vérification des identifiants (à remplacer par votre logique d'authentification)
+      if (username && password) {
+        Alert.alert(
+          'Connexion réussie',
+          'Vous êtes maintenant connecté.',
+          [
+            {
+              text: 'OK',
+              onPress: () => {
+                navigation.navigate('Home');
+              }
+            }
+          ]
+        );
+      } else {
+        Alert.alert('Erreur', 'Identifiants incorrects');
+      }
     }
   };
 
