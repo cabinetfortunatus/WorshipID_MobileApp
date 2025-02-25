@@ -65,7 +65,7 @@ const navigation = useNavigation();
                     icon={require('../../assets/icons/preach.png')}
                     title="Annonces"
                     subtitle="Les informations importantes et se mises à jour pour les membres de l'église sont toujours ici avec les dernières nouveautés, partenaires et des opportunités d'engagement envers l'église."
-                    onPress={() => navigation.navigate('Announcements')}
+                    onPress={() => navigation.navigate('Annonce')}
                 />
 
                 <MenuItem

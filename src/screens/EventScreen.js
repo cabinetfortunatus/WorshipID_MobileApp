@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, Image} from 'react-native';
+import { View, ScrollView, Image,FlatList } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import EventForm from '../components/Events/EventForm';
 import EventStyle from '../styles/EventStyle';
@@ -19,8 +19,9 @@ const EventScreen = () => {
             />
         <View style={EventStyle.overlay}>
        
-        <ScrollView style={EventStyle.container}>
-              
+        <ScrollView 
+          style={EventStyle.container}
+          contentContainerStyle={{ flexGrow: 1 }} >
             <LinearGradient 
             colors={['#A49EF4',  '#f3f8fd']}  
             locations={[0, 0.5]}

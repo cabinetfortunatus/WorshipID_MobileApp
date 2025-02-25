@@ -10,13 +10,15 @@ const EventStyle = StyleSheet.create({
 
 container: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    // backgroundColor: COLORS.white,
 
     },
 
 BackGroundView :{
-    width : width,
+    // flex:1,
     height :height,
+    width:width,
+    borderRadius:14
     },
 
 HeighImage: {
@@ -32,17 +34,19 @@ HeighImage: {
     
 
 overlay: {
-    position: 'absolute',
+  // flex:1,
+    // backgroundColor:"white",
     width: OVERLAY_WIDTH,
     height: OVERLAY_HEIGHT,
     left: (width - OVERLAY_WIDTH)/2.5 ,
     top: (height - OVERLAY_HEIGHT)/2.5 ,
-    // justifyContent: 'center',
-    marginHorizontal :"1.5%",
+    justifyContent: 'center',
+    alignContent:"center",
+    marginHorizontal :"2%",
     marginVertical :"5%",
-    borderRadius: 12, 
-    overflow: 'hidden', 
-    top:"15%"
+    borderRadius: 14, 
+    // borderWidth:1,
+    top:"18%"
 },
 
 
@@ -145,7 +149,7 @@ cardContainer: {
     backgroundColor: 'white',
     borderRadius: 14,
     width: '45%',
-    height: "40%",
+    height: "35%",
     marginBottom: 15,
     shadowColor: '#000',
     shadowOffset: {
@@ -154,12 +158,13 @@ cardContainer: {
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 10,
-    top:"-15%",
+    top:"-10%",
     marginHorizontal: "2%",
     right:"2%",
   },
   
 card: {
+  // flex:1,
     flexDirection: 'row', 
     flexWrap: 'wrap',
     alignItems: 'center',

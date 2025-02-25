@@ -5,11 +5,13 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  SafeAreaView
 } from 'react-native';
 import EventStyle from '../../styles/EventStyle';
 import ConstEvent from './ConstEvent';
 import ServiceCard from './ServiceCard';
 import { useNavigation } from '@react-navigation/native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 const EventForm = () => {
@@ -34,6 +36,12 @@ const EventForm = () => {
       },
       {
         id: '4',
+        title: 'Cours sur la Bible',
+        description: 'Études bibliques',
+        icon: require('../../assets/images/bible.png'),
+      },
+      {
+        id: '5',
         title: 'Cours sur la Bible',
         description: 'Études bibliques',
         icon: require('../../assets/images/bible.png'),
@@ -74,17 +82,18 @@ const EventForm = () => {
                 />
               
         </TouchableOpacity>
-  
-        <View style={EventStyle.card}>
-          {services.map((service) => (
-            <ServiceCard
-              key={service.id}
-              title={service.title}
-              description={service.description}
-              icon={service.icon}
-            />
-          ))}
-      </View>
+        {/* <ScrollView style={{flex:1}}> */}
+          <SafeAreaView style={EventStyle.card}>
+            {services.map((service) => (
+              <ServiceCard
+                key={service.id}
+                title={service.title}
+                description={service.description}
+                icon={service.icon}
+              />
+            ))}
+        </SafeAreaView>
+      {/* </ScrollView> */}
     </View>
   
     );
