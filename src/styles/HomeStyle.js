@@ -1,30 +1,28 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet,Dimensions } from 'react-native';
+const { width, height } = Dimensions.get('window');
 
+const OVERLAY_WIDTH = width * 0.85; 
+const OVERLAY_HEIGHT = height * 0.90; 
 const HomeStyles = StyleSheet.create({
     containerGrad: {
         flex: 1,
-        position: 'relative',
-        height: "100%",
-        width: '80%'
+        position:"relative",
+        justifyContent:"flex-start",
+
     },
 
-    TitleHome1: {
-        marginHorizontal: "-38%",
-        top: "-50%",
+    overlay: {
+    
+        width: OVERLAY_WIDTH,
+        height: OVERLAY_HEIGHT,
+        left: (width - OVERLAY_WIDTH)/2 ,
+        top: (height - OVERLAY_HEIGHT)/2 ,
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        marginVertical :"5%",
+        borderRadius: 12, 
+        overflow: 'hidden', 
     },
-    TitleHome2: {
-        marginHorizontal: "-12.5%",
-        top: "-99%",
-    },
-
-    contentContainer: {
-        flex: 1,
-        paddingBottom: 40,
-    },
-    header: {
-        padding: 20,
-        paddingTop: 40,
-    },
+    
     headerSmall: {
         fontSize: 18,
         color: '#8B5CF6',
@@ -67,8 +65,9 @@ const HomeStyles = StyleSheet.create({
         shadowOpacity: 0.05,
         shadowRadius: 12,
         elevation: 15,
-        top: "-10%",
+        // top: "-10%",
         position: 'relative',
+        marginBottom:50
     },
 
     ctaTextContainer: {
@@ -90,20 +89,16 @@ const HomeStyles = StyleSheet.create({
         lineHeight: 20
     },
     ctaImageContainer: {
-
       alignItems: 'center',
-
     },
 
     ctaImage: {
         width: "90%",
         height: "90%",
         marginLeft: "40%",
+        resizeMode:"contain"
     },
-    menuContainer: {
-        top: "-5%"
-    },
-
+    
     menuItem: {
         backgroundColor: '#eaf0fb',
         margin: 16,

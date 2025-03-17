@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Alert, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import CustomInput from '../CustomInput';
 import CustomButton from '../Register/Button/CustomButton';
@@ -9,11 +9,14 @@ import GradientText from "react-native-gradient-texts";
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
   const navigation = useNavigation();
 
   const handleLogin = () => {
     if (validateForm()) {
-      // Vérification des identifiants (à remplacer par votre logique d'authentification)
+     
       if (username && password) {
         Alert.alert(
           'Connexion réussie',
@@ -33,9 +36,30 @@ const LoginForm = () => {
     }
   };
 
+  const handlePasswordReset = () => {
+    if (validateForm()) {
+      Alert.alert(
+        'Réinitialisation réussie',
+        'Votre mot de passe a été réinitialisé avec succès.',
+        [
+          {
+            text: 'OK',
+            onPress: () => {
+              setIsForgotPassword(false); 
+            }
+          }
+        ]
+      );
+    }
+  };
+
   const validateForm = () => {
     if (!username || !password) {
-      Alert.alert('Erreur', 'Veuillez remplir tous les champs obligatoires');
+      Alert.alert('Erreur', 'Veuillez remplir tous les champs');
+      return false;
+    }
+    if (isForgotPassword && (!oldPassword || !newPassword)) {
+      Alert.alert('Erreur', 'Veuillez remplir tous les champs de réinitialisation');
       return false;
     }
     return true;
@@ -67,35 +91,73 @@ const LoginForm = () => {
           />
         </View>
 
-        <View style={loginStyles.bloc_input}>
-          <CustomInput
-            label="Username"
-            placeholder="Votre username"
-            value={username}
-            onChangeText={setUsername}
-          />
-          
-          <CustomInput
-            label="Mot de passe"
-            secureTextEntry
-            placeholder="Votre mot de passe"
-            value={password}
-            onChangeText={setPassword}
-          />
+        {!isForgotPassword ? (
+          <View style={loginStyles.bloc_input}>
+            <CustomInput
+              label="Username"
+              placeholder="Votre username"
+              value={username}
+              onChangeText={setUsername}
+            />
+            
+            <CustomInput
+              label="Mot de passe"
+              secureTextEntry
+              placeholder="Votre mot de passe"
+              value={password}
+              onChangeText={setPassword}
+            />
 
-          <TouchableOpacity 
-            onPress={() => navigation.navigate('ForgotPassword')}
-          >
-            <Text style={loginStyles.forgotPasswordText}>
-              Mot de passe oublié ?
-            </Text>
-          </TouchableOpacity>
+            <TouchableOpacity 
+              onPress={() => setIsForgotPassword(true)}
+            >
+              <Text style={loginStyles.forgotPasswordText}>
+                Mot de passe oublié ?
+              </Text>
+            </TouchableOpacity>
 
-          <CustomButton
-            title="Se connecter"
-            onPress={handleLogin}
-          />
-        </View>
+            <CustomButton
+              title="Se connecter"
+              onPress={handleLogin}
+            />
+          </View>
+          ) : (
+          <View style={loginStyles.bloc_input}>
+            <CustomInput
+              label="Username"
+              placeholder="Entrez votre username"
+            />
+            <CustomInput
+              label ="Nouveau mot de passe"
+              secureTextEntry
+              placeholder="Entrez votre nouveau mot de passe"
+              value={newPassword}
+              onChangeText={setNewPassword}
+            />
+
+           
+            <CustomInput
+              label ="Nouveau mot de passe"
+              secureTextEntry
+              placeholder="Confirmé votre nouveau mot de passe"
+              value={newPassword}
+              onChangeText={setNewPassword}
+            />
+
+            <CustomButton
+              title="Réinitialiser"
+              onPress={handlePasswordReset}
+            />
+
+            <TouchableOpacity 
+              onPress={() => setIsForgotPassword(false)} 
+            >
+              <Text style={loginStyles.forgotPasswordText}>
+                Retour à la connexion
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
 
         <View style={loginStyles.signupContainer}>
           <Text style={loginStyles.signupText}>

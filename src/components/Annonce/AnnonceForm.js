@@ -69,14 +69,14 @@ const AnnonceForm = () => {
                 <Text style={EventStyle.backButtonText}>←</Text>
             </TouchableOpacity>
 
-            <View style={EventStyle.searchContainer}>
-                <View style={EventStyle.searchBar}>
+            <View style={AnnonceStyle.searchContainer}>
+                <View style={AnnonceStyle.searchBar}>
                     <TouchableOpacity>
                         <Image source={require('../../assets/icons/search.png')} />
                     </TouchableOpacity>
 
                     <TextInput
-                        style={EventStyle.searchInput}
+                        style={AnnonceStyle.searchInput}
                         placeholder="rechercher..."
                         placeholderTextColor="#9CA3AF"
                     />

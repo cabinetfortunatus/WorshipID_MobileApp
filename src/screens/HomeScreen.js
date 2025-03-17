@@ -3,7 +3,7 @@ import { View, ScrollView, Image} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import HomeForm from '../components/Home/HomeForm';
 import  loginStyles  from '../styles/LoginStyles';
-
+import HomeStyles from '../styles/HomeStyle';
 const HomeScreen = () => {
   return (
     <LinearGradient 
@@ -15,8 +15,8 @@ const HomeScreen = () => {
         source={require('../assets/images/pigeon.png')}
         style={loginStyles.topRightImage}
       />
-      <View style={loginStyles.overlay}>
-        <ScrollView style={loginStyles.container}>
+      <View style={HomeStyles.overlay}>
+        <ScrollView >
           <HomeForm />
         </ScrollView>
       </View>

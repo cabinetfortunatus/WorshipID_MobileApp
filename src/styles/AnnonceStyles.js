@@ -1,11 +1,48 @@
+import { StyleSheet, Dimensions } from 'react-native';
 
-import { StyleSheet } from 'react-native';
+const { width, height } = Dimensions.get('window');
+
+const OVERLAY_WIDTH = width * 0.85; 
+const OVERLAY_HEIGHT = height * 0.75; 
 
 const AnnonceStyle = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
 
-menuItemAnnonce: {
-    width:"75%",
-    height:"35%",
+  BackGroundView: {
+    flex: 1,
+    height: OVERLAY_HEIGHT,
+    width: OVERLAY_WIDTH,
+    borderRadius: 14,
+    alignItems: "center",
+  },
+
+  HeighImage: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    width: "100%",  
+    height: "20%", 
+    borderRadius: 12,
+    opacity: 0.6,
+  },
+    
+  overlay: {
+    width: OVERLAY_WIDTH,
+    height: OVERLAY_HEIGHT,
+    left: (width - OVERLAY_WIDTH) / 2,  // Corrigé: division par 2 au lieu de 2.5
+    marginHorizontal: "2%",
+    marginVertical: "5%",
+    borderRadius: 14,
+    justifyContent: 'center',
+    alignItems: "center",  
+    top: "18%",
+
+  },
+
+  menuItemAnnonce: {
+    height: "45%",
     backgroundColor: '#eaf0fb',
     margin: "5%",
     marginTop: 8,
@@ -16,16 +53,16 @@ menuItemAnnonce: {
     alignItems: 'center',
     shadowColor: '#f5f3fc',
     shadowOffset: {
-        width: 0,
-        height: 5,
+      width: 0,
+      height: 5,
     },
     shadowOpacity: 0.1,
     shadowRadius: 12,
     elevation: 10,
-    top:"8%"
-},
+    top: "8%"
+  },
 
-menuIconContainerAnnonce: { 
+  menuIconContainerAnnonce: { 
     backgroundColor: 'white',
     borderRadius: 50,
     padding: 6,
@@ -35,50 +72,80 @@ menuIconContainerAnnonce: {
     shadowOpacity: 0.05,
     shadowRadius: 0.5,
     elevation: 5,
-},
-menuIconAnnonce: {
+  },
+
+  menuIconAnnonce: {
     width: 30,
     height: 30,
-},
+  },
 
-menuTextContainerAnnonce: {
+  menuTextContainerAnnonce: {
     flex: 1,
-},
-menuTitleAnnonce: {
+  },
+
+  menuTitleAnnonce: {
     fontSize: 14,
     color: '#687cce',
     fontWeight: '600',
     marginBottom: 4,
     flexShrink: 1,
-},
-menuSubtitleAnnonce: {
+  },
+
+  menuSubtitleAnnonce: {
     fontSize: 10,
     color: '#6B7280',
     lineHeight: 20,
     flexWrap: 'wrap'
-},
+  },
 
-ContainnerProchEvent:{
-    flex:1,
-    width:"75%",
+  searchContainer: {
+    flexDirection: 'row',
+    marginHorizontal: "5%",
+  },
+
+  searchBar: {
+    flex: 1,
+    backgroundColor: 'white',
+    borderRadius: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: "5%",
+    paddingVertical: 8,  
+    elevation: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+
+  searchInput: {
+    flex: 1,
+    alignItems: "center",
+    marginLeft: 10,
+    fontSize: 12,
+  },
+
+  ContainnerProchEvent: {
+    width: "75%",
+    height: "55%",
     margin: "5%",
     marginTop: "2%",
     padding: 12,
     borderRadius: 16,
-    backgroundColor:"#edf3fb",
-    top:"-15%"
-},
+    backgroundColor: "#edf3fb",
+    top: "-20%"
+  },
 
-TitleHome1: {
+  TitleHome1: {
     top: "-10%",
-},
-cardContainer: {
-    flex:1,
+  },
+
+  cardContainer: {
+    flex: 1,
     padding: "1%",
     marginVertical: "5%",
     width: "100%",
-    height:"18%",
-  
+    height: "18%",
   },
 
   cardDate: {
@@ -90,25 +157,23 @@ cardContainer: {
 
   cardTheme: {
     fontSize: 12,
-    fontWeight: '600',
+    fontWeight: 'bold',  // Corrigé: dupliqué fontWeight
     color: '#333',
     marginBottom: 6,
-    fontWeight: "bold"
   },
 
   CardIconText: {
     flexDirection: "row",
-    alignItems:"center",
-    justifyContent:"center",
+    alignItems: "center",
+    justifyContent: "center",
     borderTopWidth: 1, 
     borderTopColor: '#bf89f7', 
-    borderBottomColor:"#bf89f7",
-    borderBottomWidth:1,
-    paddingBottom:"3%",
+    borderBottomColor: "#bf89f7",
+    borderBottomWidth: 1,
+    paddingBottom: "3%",
     paddingTop: "3%",
-    width:"100%",
-    top:"7%"
-
+    width: "100%",
+    top: "7%"
   },
 
   NameEventContainer: {
@@ -137,7 +202,7 @@ cardContainer: {
   DurIcoContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop:"8%",
+    marginTop: "8%",
   },
 
   icon: {
@@ -156,7 +221,7 @@ cardContainer: {
     paddingVertical: "2%",
     paddingHorizontal: "5%",
     borderRadius: 12,
-    marginRight:"2%"
+    marginRight: "2%"
   },
 
   buttonText: {
@@ -164,7 +229,6 @@ cardContainer: {
     fontSize: 10,
     fontWeight: "600",
   },
-
 });
 
 export default AnnonceStyle;

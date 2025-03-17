@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import EventStyle from '../styles/EventStyle';
+import AnnonceStyle from '../styles/AnnonceStyles';
 import AnnonceForm from '../components/Annonce/AnnonceForm';
 
 
@@ -10,21 +10,20 @@ const AnnonceScreen = () => {
     <LinearGradient 
       colors={['#94BCEB', '#A49EF4', '#FFF']}  
       locations={[0, 0.4, 0.6]}
-      style={EventStyle.BackGroundView} 
+      style={AnnonceStyle.container} 
     >
         <Image
               source={require('../assets/images/croix.jpg')}
-              style={EventStyle.HeighImage}
+              style={AnnonceStyle.HeighImage}
             />
-        <View style={EventStyle.overlay}>
-          <View style={EventStyle.container}>    
-              <LinearGradient 
+        <View style={AnnonceStyle.overlay}>
+              {/* <LinearGradient 
                   colors={['#A49EF4',  '#f3f8fd']}  
                   locations={[0, 0.5]}
-                  style={EventStyle.BackGroundView} >
-                <AnnonceForm/>
-            </LinearGradient>
-          </View>
+                   >
+                
+            </LinearGradient> */}
+            <AnnonceForm/>
       </View>
     </LinearGradient>
   );

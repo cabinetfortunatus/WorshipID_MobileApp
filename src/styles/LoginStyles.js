@@ -10,7 +10,7 @@ const loginStyles = StyleSheet.create({
 container: {
     flex: 1,
     backgroundColor: COLORS.white,
-
+    alignItems:"center"
     },
 
 BackGroundView :{
@@ -29,7 +29,6 @@ topRightImage: {
     
 overlay: {
     
-    position: 'absolute',
     width: OVERLAY_WIDTH,
     height: OVERLAY_HEIGHT,
     left: (width - OVERLAY_WIDTH)/2 ,
@@ -39,6 +38,7 @@ overlay: {
     marginVertical :"5%",
     borderRadius: 12, 
     overflow: 'hidden', 
+    alignItems:"center"
 },
 
 backButton: {
@@ -72,17 +72,11 @@ Images:{
     top :-10
   },
 
-  passwordContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    position: 'relative',
-  },
-
   forgotPasswordText:{
-    fontSize: 12,
-    marginHorizontal: 45,
+    fontSize: 10,
     color: '#1E90FF',
-    textDecorationLine: 'underline'
+    textDecorationLine: 'underline',
+    marginHorizontal:"12%"
   },
 
   title: {

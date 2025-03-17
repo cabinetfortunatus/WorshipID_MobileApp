@@ -15,7 +15,7 @@ const INITIAL_FORM_DATA = {
   address: '',
   phone: '',
   gender: '',
-  countryCode: '+261' // Code par défaut pour la France
+  countryCode: '+243'
 };
 
 const MembershipForm = () => {
@@ -24,8 +24,8 @@ const MembershipForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [show, setShow] = useState(false);
-  const [countryCode, setCountryCode] = useState('+261');
-  const [countryFlag, setCountryFlag] = useState('🇲🇬');
+  const [countryCode, setCountryCode] = useState('+243');
+  const [countryFlag, setCountryFlag] = useState('🇨🇩');
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const handleChange = (field, value) => {

@@ -64,10 +64,17 @@ export const membershipStyles = StyleSheet.create({
     width : "75%",
     borderColor: '#bf89f7',
     marginHorizontal:"12%",
+    overflow: 'hidden',
+    numberOfLines:1,
   
   },
   label:{
     fontSize:10
+  },
+  inputText:{
+    fontSize:12,
+
+  
   },
 
   countryButton:{

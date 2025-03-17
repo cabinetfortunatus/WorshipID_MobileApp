@@ -13,7 +13,7 @@ export const buttonStyles = StyleSheet.create({
     marginVertical: 10,
     width: "75%",
     height: 45,
-    // opacity: 0.9
+    alignItems:"center"
   },
   buttonText: {
     color: COLORS.white,
