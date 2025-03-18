@@ -5,7 +5,7 @@ const OVERLAY_WIDTH = width * 0.85;
 const OVERLAY_HEIGHT = height * 0.90; 
 const HomeStyles = StyleSheet.create({
     containerGrad: {
-        flex: 1,
+        height:height/5,
         position:"relative",
         justifyContent:"flex-start",
 
@@ -21,17 +21,7 @@ const HomeStyles = StyleSheet.create({
         marginVertical :"5%",
         borderRadius: 12, 
         overflow: 'hidden', 
-    },
-    
-    headerSmall: {
-        fontSize: 18,
-        color: '#8B5CF6',
-        fontWeight: '500',
-    },
-    headerLarge: {
-        fontSize: 28,
-        color: '#8B5CF6',
-        fontWeight: 'bold',
+        paddingBottom:15
     },
     mainCta: {
         backgroundColor: '#FFFFFF',
@@ -54,9 +44,9 @@ const HomeStyles = StyleSheet.create({
         flexDirection:"row",
         flex: 1,
         backgroundColor: '#fbfbfb',
-        margin: 16,
-        padding: 16,
-        borderRadius: 12,
+        margin: 12,
+        padding: 12,
+        borderRadius: 14,
         shadowColor: "grey",
         shadowOffset: {
             width: 0,
@@ -65,7 +55,6 @@ const HomeStyles = StyleSheet.create({
         shadowOpacity: 0.05,
         shadowRadius: 12,
         elevation: 15,
-        // top: "-10%",
         position: 'relative',
         marginBottom:50
     },

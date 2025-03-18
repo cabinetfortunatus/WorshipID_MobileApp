@@ -23,24 +23,13 @@ export const membershipStyles = StyleSheet.create({
     height: "30%", 
     },
   
-  // backButton: {
-  //   padding: "5%",
-  //   marginHorizontal: 38,
-  //   top:30
-  // },
-  
-  // backButtonText: {
-  //   fontSize: 25,
-  //   fontWeight :'bold'
-  // },
-  
+
   titleContainer: {
     top: "-5%", 
     alignItems: 'center',  
   },
   
   BlocContainer: {
-    top: "0%",
     width:"100%",
     height:"95%",
   },
@@ -138,7 +127,7 @@ export const membershipStyles = StyleSheet.create({
     width: OVERLAY_WIDTH,
     height: OVERLAY_HEIGHT,
     left: (width - OVERLAY_WIDTH)/2 ,
-    top: (height - OVERLAY_HEIGHT)/2 ,
+    top: (height - OVERLAY_HEIGHT)/3.5 ,
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
     justifyContent: 'center',
     alignItems: 'center',

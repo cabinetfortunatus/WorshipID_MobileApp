@@ -8,15 +8,18 @@ const AproposForm = ({ eventData }) => {
 
   return (
     <View style={AproposStyle.infoCard}>
-      <GradientText
-        text={title}
-        fontSize={22}
-        isGradientFill
-        gradientColors={["#4983F6", "#FBACB7", "#C175F5"]}
-        gradientLocations={[0, 0.4, 0.8]}
-        style={AproposStyle.eventTitle}
-      />
-      <View style={{flex: 1, top: "-20%"}}>
+      <View style ={AproposStyle.gradContainer}>
+        <GradientText
+          text={title}
+          fontSize={22}
+          isGradientFill
+          gradientColors={["#4983F6", "#FBACB7", "#C175F5"]}
+          gradientLocations={[0, 0.4, 0.8]}
+          style={AproposStyle.eventTitle}
+          locations={{ x: "45%", y: "35%" }}
+        />
+      </View>
+      <View style={AproposStyle.HeaderContainer}>
         <View style={AproposStyle.row}>
           <Text style={AproposStyle.eventD}>{description}</Text>
         </View>

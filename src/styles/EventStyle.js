@@ -59,7 +59,7 @@ const EventStyle = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: width * 0.04,
-    paddingVertical: height * 0.015,
+    paddingVertical: height * 0.005,
     elevation: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },

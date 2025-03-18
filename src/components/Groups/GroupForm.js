@@ -81,7 +81,7 @@ const GroupForm = () => {
                   isGradientFill
                   gradientColors={["#4983F6", "#FBACB7", "#C175F5"]}
                   gradientLocations={[0, 0.4, 0.8]}
-                  style={GroupStyle.TitleHome1}
+                  locations={{x:"20%", y:"20%"}}
               />
             <ScrollView
                     keyboardShouldPersistTaps="handled"

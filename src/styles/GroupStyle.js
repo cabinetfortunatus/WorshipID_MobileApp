@@ -82,7 +82,7 @@ searchInput: {
 
 menuItem: {
     width:"85%",
-    height:"45%",
+    height:"48%",
     backgroundColor: '#eaf0fb',
     margin: "5%",
     marginTop: "2%",

@@ -1,6 +1,12 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 
-// const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
+
+const scale = width / 375; // Using 375 as base width (iPhone X)
+const verticalScale = height / 812; 
+
+// Responsive scaling function for fonts and spacing
+const normalize = (size) => Math.round(size * scale);
 
 const AproposStyle = StyleSheet.create({
   container: {
@@ -9,159 +15,156 @@ const AproposStyle = StyleSheet.create({
   },
   HeighImage: {
     width: '100%',
-    height: "35%",
-    top:"-5%",
+    height: height * 0.35,
+    marginTop: -height * 0.05,
     resizeMode: 'cover',
-    opacity:0.6
-
+    opacity: 0.6
   },
   backButton: {
     position: 'absolute',
-    padding: "3%",
-    top:"20%",
-    marginHorizontal: "5%",
+    padding: normalize(12),
+    top: height * 0.2,
+    marginHorizontal: width * 0.05,
   },
   backButtonText: {
-    fontSize: 25,
+    fontSize: normalize(25),
     fontWeight: 'bold',
   },
   icon: {
-    width: 15,
-    height: 15,
+    width: normalize(15),
+    height: normalize(15),
   },
   infoCard: {
-    width:"90%",
-    height:"35%",
     backgroundColor: '#FFF',
-    borderRadius: 15,
+    height: height * 0.22,
+    borderRadius: normalize(15),
     elevation: 10,
-    top:"-7%",
     shadowColor: '#f5f3fc',
-        shadowOffset: {
-            width: 0,
-            height: 5,
-        },
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
     shadowOpacity: 0.1,
     shadowRadius: 12,
-
+    marginBottom:"3%",
+    padding:"2%"
   },
-  eventTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#7B5EC7',
-    top:"-15%",
+  HeaderContainer: {
+    flex: 1,
+    width: width * 0.9,
+    alignSelf: 'center',
   },
-  eventD:{
-    fontSize:10,
-    marginInlineStart:"5%"
-
+  gradContainer: {
+    height: height * 0.06
+  },
+  eventD: {
+    fontSize: normalize(12),
+    marginStart: width * 0.05
   },
   eventDescription: {
-    fontSize: 14,
+    fontSize: normalize(14),
     color: '#777',
-    marginInlineStart:"5%"
+    marginStart: width * 0.02
   },
   row: {
     flexDirection: 'row',
-    marginTop: "3%",
-    gap:"3%",
-    marginHorizontal:"3%"
+    marginTop: height * 0.02,
+    gap: width * 0.03,
+    marginHorizontal: width * 0.03,
+
   },
   eventAddress: {
-    fontSize: 12,
+    fontSize: normalize(12),
     color: '#777',
-    top:"40%",
-    marginLeft: "2%",
+    marginLeft: width * 0.02,
   },
   dateTimeContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 10,
-    padding: 10,
-    marginTop: "3%",
-    gap:"15%"
+    borderRadius: normalize(10),
+    padding: normalize(10),
+    gap: width * 0.15,
+
   },
   dateTimeLabel: {
-    borderRadius:12,
-    padding:"2%",
-    fontSize: 12,
-    backgroundColor:"#7B5EC7",
+    borderRadius: normalize(10),
+    padding: width * 0.01,
+    fontSize: normalize(12),
+    backgroundColor: "#7B5EC7",
     color: '#ffff',
     fontWeight: 'bold',
   },
   dateTimeText: {
-    fontSize: 12,
+    fontSize: normalize(10),
     color: '#555',
-    marginLeft: 10,
+    marginLeft: width * 0.03,
   },
   iconInfo: {
-    marginLeft: 5,
+    marginLeft: width * 0.01,
   },
- 
   contentContainer: {
-    flex:1,
+    flex: 1,
     backgroundColor: '#f3f8fd',
-    width:"90%",
-    borderRadius: 12,
+    width: width*0.9,
+    alignSelf: 'center',
+    borderRadius: normalize(12),
     overflow: 'hidden',
     elevation: 10,
     shadowColor: '#f5f3fc',
-        shadowOffset: {
-            width: 0,
-            height: 5,
-        },
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
     shadowOpacity: 0.1,
     shadowRadius: 12,
-    top:"-2%"
   },
   descriptionText: {
-    fontSize: 12,
+    fontSize: normalize(12),
     color: '#666',
-    padding:16
+    padding: normalize(16)
   },
-
   besoinsText: {
-    paddingTop:"5%",
-    marginHorizontal:"5%",
-    fontSize: 12,
+    paddingTop: height * 0.05,
+    marginHorizontal: width * 0.05,
+    fontSize: normalize(12),
     color: '#666',
-    marginBottom: 10,
+    marginBottom: height * 0.01,
   },
- 
-tabBarContainer: {
+  tabBarContainer: {
     flexDirection: 'row',
-    width:"90%",
-    top:"-3%",
+    width: "90%",
+    alignSelf: 'center',
     backgroundColor: '#f3f8fd',
-    borderRadius: 12,
+    borderRadius: normalize(12),
     overflow: 'hidden',
     elevation: 10,
     shadowColor: '#f5f3fc',
-        shadowOffset: {
-            width: 0,
-            height: 5,
-        },
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
     shadowOpacity: 0.1,
-    shadowRadius: 12
+    shadowRadius: 12,
+    marginBottom:"3%"
   },
-tabButton: {
+  tabButton: {
     flex: 1,
-    paddingVertical: 12,
+    paddingVertical: height * 0.015,
     alignItems: 'center',
     justifyContent: 'center',
-},
-activeTab: {
+  },
+  activeTab: {
     borderBottomWidth: 2,
     borderBottomColor: '#7B5EC7',
-    
-},
-tabText: {
+  },
+  tabText: {
     fontWeight: 'bold',
     color: '#666',
-},
-activeTabText: {
+    fontSize: normalize(14),
+  },
+  activeTabText: {
     color: '#7B5EC7',
-},
+  },
 });
 
 export default AproposStyle;
