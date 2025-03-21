@@ -16,14 +16,7 @@ const GroupScreen = () => {
             />
         <View style={GroupStyle.overlay}>
        
-        <View 
-          style={GroupStyle.container} >
-            {/* <LinearGradient 
-              colors={['#A49EF4',  '#f3f8fd']}  
-              locations={[0, 0.5]}
-              style={GroupStyle.BackGroundView} >
-                
-          </LinearGradient> */}
+        <View style={GroupStyle.container} > 
           <GroupForm/>
         </View>
       </View>

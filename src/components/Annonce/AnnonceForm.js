@@ -97,11 +97,11 @@ const AnnonceForm = () => {
             <View style={AnnonceStyle.ContainnerProchEvent}>
                 <GradientText
                     text={"Prochains Evènements ..."}
-                    fontSize={22}
+                    fontSize={20}
                     isGradientFill
                     gradientColors={["#4983F6", "#FBACB7", "#C175F5"]}
                     gradientLocations={[0, 0.4, 0.8]}
-                    style={AnnonceStyle.TitleHome1}
+                    locations={{ x: "40%", y: "50%" }}
                 />
                 
                 <ScrollView

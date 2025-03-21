@@ -10,14 +10,6 @@ const AnnonceStyle = StyleSheet.create({
     flex: 1,
   },
 
-  BackGroundView: {
-    flex: 1,
-    height: OVERLAY_HEIGHT,
-    width: OVERLAY_WIDTH,
-    borderRadius: 14,
-    alignItems: "center",
-  },
-
   HeighImage: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -31,12 +23,12 @@ const AnnonceStyle = StyleSheet.create({
   overlay: {
     width: OVERLAY_WIDTH,
     height: OVERLAY_HEIGHT,
-    left: (width - OVERLAY_WIDTH) / 2,  // Corrigé: division par 2 au lieu de 2.5
+    alignSelf: 'center',
+    justifyContent: 'center',
     marginHorizontal: "2%",
     marginVertical: "5%",
     borderRadius: 14,
     justifyContent: 'center',
-    alignItems: "center",  
     top: "18%",
 
   },
@@ -126,7 +118,6 @@ const AnnonceStyle = StyleSheet.create({
   },
 
   ContainnerProchEvent: {
-    width: "75%",
     height: "55%",
     margin: "5%",
     marginTop: "2%",

@@ -37,10 +37,23 @@ const GroupForm = () => {
           Name_group: 'Gospel',
           Fonction: 'Étude biblique',
         },
+        {
+          id: '5',
+          Name_group: 'Gospel',
+          Fonction: 'Étude biblique',
+        },
+        {
+          id: '6',
+          Name_group: 'Gospel',
+          Fonction: 'Étude biblique',
+        },
+        {
+          id: '7',
+          Name_group: 'Gospel',
+          Fonction: 'Étude biblique',
+        },
        
     ];
-
- 
     return (
     <View>
         <TouchableOpacity

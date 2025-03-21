@@ -66,7 +66,7 @@ const navigation = useNavigation();
                     icon={require('../../assets/icons/Ranking.png')}
                     title="Classements"
                     subtitle="Soyez plus actifs et plus dynamiques dans les différents événements et activités, votre taux de participation active vous récompense vos engagements et témoignent d'une plus grande implication dans la vie de l'église."
-                    onPress={() => navigation.navigate('Rankings')}
+                    onPress={() => navigation.navigate('Ranking')}
                 />
                 <MenuItem
                     icon={require('../../assets/icons/group.png')}

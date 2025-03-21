@@ -32,19 +32,17 @@ HeighImage: {
 overlay: {
     width: OVERLAY_WIDTH,
     height: OVERLAY_HEIGHT,
-    left: (width - OVERLAY_WIDTH)/2.5 ,
-    top: (height - OVERLAY_HEIGHT)/2.5 ,
+    alignSelf: 'center',
     marginHorizontal :"2%",
     marginVertical :"5%",
     borderRadius: 14, 
     top:"18%",
-    overflow: 'hidden'
+    overflow: 'hidden',
 },
 
 
 backButton: {
     padding: "3%",
-    // marginHorizontal: "5%",
   },
 backButtonText: {
   fontSize: 25,
@@ -53,11 +51,11 @@ backButtonText: {
 },
 searchContainer: {
   flexDirection: 'row',
-//   marginHorizontal: "5%",
+
   
 },
 searchBar: {
-//   flex:1,
+  flex:1,
   backgroundColor: 'white',
   borderRadius:12,
   flexDirection: 'row',
@@ -81,8 +79,7 @@ searchInput: {
 
 
 menuItem: {
-    width:"85%",
-    height:"48%",
+    height:"45%",
     backgroundColor: '#eaf0fb',
     margin: "5%",
     marginTop: "2%",

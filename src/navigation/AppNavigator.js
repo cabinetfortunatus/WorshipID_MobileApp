@@ -8,6 +8,7 @@ import EventScreen from '../screens/EventScreen';
 import AnnonceScreen from '../screens/AnnonceScreen';
 import AproposScreen from '../screens/AproposScreen';
 import GroupScreen from '../screens/GroupScreen';
+import RankingScreen from '../screens/RankingScreen';
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -24,7 +25,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Annonce" component={AnnonceScreen} />
         <Stack.Screen name="Apropos" component={AproposScreen} />
         <Stack.Screen name="Group" component={GroupScreen} />
-
+        <Stack.Screen name="Ranking" component={RankingScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
