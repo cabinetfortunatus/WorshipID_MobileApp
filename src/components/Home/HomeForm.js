@@ -48,12 +48,12 @@ const navigation = useNavigation();
                     onPress={() => navigation.navigate('Event')}
                     />
 
-                <MenuItem
+                {/* <MenuItem
                     icon={require('../../assets/icons/actuality.png')}
                     title="Les Actualités"
                     subtitle="Vous pouvez voir ici les événements récents, les annonces importantes et les infos à jour concernant la communauté."
                     onPress={() => navigation.navigate('News')}
-                />
+                /> */}
 
                 <MenuItem
                     icon={require('../../assets/icons/preach.png')}
