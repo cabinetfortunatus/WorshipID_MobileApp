@@ -1,6 +1,15 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions,PixelRatio } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
+const normalizeSize = (size) => {
+  const scale = width / 375; 
+  const newSize = size * scale;
+  
+  if (Platform.OS === 'ios') {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize));
+  }
+  return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2;
+};
 
 const OVERLAY_WIDTH = width * 0.85; 
 const OVERLAY_HEIGHT = height * 0.75; 
@@ -36,11 +45,13 @@ const AnnonceStyle = StyleSheet.create({
   menuItemAnnonce: {
     height: "45%",
     backgroundColor: '#eaf0fb',
-    margin: "5%",
-    marginTop: 8,
-    marginBottom: 8,
-    padding: 8,
-    borderRadius: 12,
+    width:width*0.75,
+    margin: width * 0.02,
+    marginTop: height * 0.01,
+    marginBottom: height * 0.01,
+    alignSelf: 'center',
+    padding: normalizeSize(8),
+    borderRadius: normalizeSize(12),
     flexDirection: 'row',
     alignItems: 'center',
     shadowColor: '#f5f3fc',
@@ -56,9 +67,9 @@ const AnnonceStyle = StyleSheet.create({
 
   menuIconContainerAnnonce: { 
     backgroundColor: 'white',
-    borderRadius: 50,
-    padding: 6,
-    marginRight: 12,
+    borderRadius: normalizeSize(50),
+    padding: normalizeSize(8),
+    marginRight: normalizeSize(12),
     shadowColor: '#f5f3fc',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
@@ -67,8 +78,8 @@ const AnnonceStyle = StyleSheet.create({
   },
 
   menuIconAnnonce: {
-    width: 30,
-    height: 30,
+    width: normalizeSize(30),
+    height: normalizeSize(30),
   },
 
   menuTextContainerAnnonce: {
@@ -76,17 +87,17 @@ const AnnonceStyle = StyleSheet.create({
   },
 
   menuTitleAnnonce: {
-    fontSize: 14,
+    fontSize: normalizeSize(14),
     color: '#687cce',
     fontWeight: '600',
-    marginBottom: 4,
+    marginBottom: normalizeSize(4),
     flexShrink: 1,
   },
 
   menuSubtitleAnnonce: {
-    fontSize: 10,
+    fontSize: normalizeSize(10),
     color: '#6B7280',
-    lineHeight: 20,
+    lineHeight: normalizeSize(20),
     flexWrap: 'wrap'
   },
 
@@ -94,27 +105,29 @@ const AnnonceStyle = StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: "5%",
   },
+  
 
   searchBar: {
-    flex: 1,
     backgroundColor: 'white',
-    borderRadius: 12,
+    borderRadius: normalizeSize(12),
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: "5%",
-    paddingVertical: 8,  
+    // width: '85%',
+    paddingHorizontal: width * 0.05,
+    paddingVertical: normalizeSize(8),
     elevation: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
+    alignSelf: 'center',
   },
 
   searchInput: {
     flex: 1,
     alignItems: "center",
-    marginLeft: 10,
-    fontSize: 12,
+    marginLeft: normalizeSize(10),
+    fontSize: normalizeSize(12),
   },
 
   ContainnerProchEvent: {
@@ -140,14 +153,14 @@ const AnnonceStyle = StyleSheet.create({
   },
 
   cardDate: {
-    fontSize: 16,
+    fontSize: normalizeSize(16),
     fontWeight: 'bold',
     color: '#4983F6',
     marginBottom: 4,
   },
 
   cardTheme: {
-    fontSize: 12,
+    fontSize: normalizeSize(12),
     fontWeight: 'bold',  // Corrigé: dupliqué fontWeight
     color: '#333',
     marginBottom: 6,
@@ -186,7 +199,7 @@ const AnnonceStyle = StyleSheet.create({
   },
 
   cardDescription: {
-    fontSize: 10,
+    fontSize: normalizeSize(10),
     color: "#6B7280",
   },
 
@@ -197,18 +210,18 @@ const AnnonceStyle = StyleSheet.create({
   },
 
   icon: {
-    width: 16,
-    height: 16,
+    width: normalizeSize(12),
+    height: normalizeSize(12),
     marginHorizontal: "3%",
   },
 
   cardDuration: {
-    fontSize: 12,
+    fontSize: normalizeSize(12),
     color: "#333",
   },
 
   button: {
-    backgroundColor: "#4983F6",
+    backgroundColor: "#A49EF4",
     paddingVertical: "2%",
     paddingHorizontal: "5%",
     borderRadius: 12,
@@ -217,7 +230,7 @@ const AnnonceStyle = StyleSheet.create({
 
   buttonText: {
     color: "#FFF",
-    fontSize: 10,
+    fontSize: normalizeSize(10),
     fontWeight: "600",
   },
 });

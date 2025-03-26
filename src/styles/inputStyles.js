@@ -15,6 +15,13 @@ export const inputStyles = StyleSheet.create({
   },
 
   input: {
+    flex: 1,
+    color: '#000', // Changé en noir
+    fontSize: 14,
+    paddingVertical: 10,
+  },
+  inputWrapper: {
+    flexDirection: 'row',
     width : "75%",
     borderWidth: 1,
     borderColor: '#bf89f7',
@@ -22,10 +29,21 @@ export const inputStyles = StyleSheet.create({
     paddingHorizontal: "5%",
     fontSize: 12,
     marginHorizontal: "12%",
-    backgroundColor: COLORS.white,
+    // backgroundColor: "#d1eae7",
     numberOfLines:1,
     overflow: 'hidden',
     textAlign: 'left', 
-    textAlignVertical: 'center'
+    textAlignVertical: 'center',
+    justifyContent:"space-between"
   },
+
+  eyeIconContainer: {
+    padding: 10,
+  },
+  eyeIcon: {
+    width: 24,
+    height: 24,
+    tintColor: '#000',
+    opacity: 0.6,
+  }
 });

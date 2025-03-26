@@ -28,7 +28,6 @@ topRightImage: {
     },
     
 overlay: {
-    
     width: OVERLAY_WIDTH,
     height: OVERLAY_HEIGHT,
     left: (width - OVERLAY_WIDTH)/2 ,

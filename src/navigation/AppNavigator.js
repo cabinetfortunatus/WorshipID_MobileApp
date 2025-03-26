@@ -9,6 +9,7 @@ import AnnonceScreen from '../screens/AnnonceScreen';
 import AproposScreen from '../screens/AproposScreen';
 import GroupScreen from '../screens/GroupScreen';
 import RankingScreen from '../screens/RankingScreen';
+import AnnonceInfoStyles from '../screens/AnnonceInfoScreen';
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -26,6 +27,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Apropos" component={AproposScreen} />
         <Stack.Screen name="Group" component={GroupScreen} />
         <Stack.Screen name="Ranking" component={RankingScreen} />
+        <Stack.Screen name="AnnonceInfo" component={AnnonceInfoStyles} />
       </Stack.Navigator>
     </NavigationContainer>
   );

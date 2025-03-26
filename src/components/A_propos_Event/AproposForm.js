@@ -16,7 +16,7 @@ const AproposForm = ({ eventData }) => {
           gradientColors={["#4983F6", "#FBACB7", "#C175F5"]}
           gradientLocations={[0, 0.4, 0.8]}
           style={AproposStyle.eventTitle}
-          locations={{ x: "30%", y: "35%" }}
+          locations={{ x: "43%", y: "35%" }}
         />
       </View>
       <View style={AproposStyle.HeaderContainer}>

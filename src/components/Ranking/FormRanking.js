@@ -81,13 +81,13 @@ const RankingForm = () => {
             let awardColor;
             switch(rank) {
                 case 1: 
-                    awardColor = "#FFD700"; // Or
+                    awardColor = "#FFD700"; 
                     break;
                 case 2: 
-                    awardColor = "#C0C0C0"; // Argent
+                    awardColor = "#C0C0C0"; 
                     break;
                 case 3: 
-                    awardColor = "#CD7F32"; // Bronze
+                    awardColor = "#CD7F32"; 
                     break;
                 default: 
                     awardColor = "#4983F6";

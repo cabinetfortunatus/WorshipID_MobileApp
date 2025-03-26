@@ -26,20 +26,21 @@ const getResponsiveMargin = (baseValue) => {
   return Math.min(baseMargin, 30); // Plafond à 30 pour les grands écrans
 };
 
-const RankinStyle = StyleSheet.create({
+const AnnonceInfoStyles = StyleSheet.create({
   BackGroundView: {
     flex: 1,
     alignItems: "center",
-    // justifyContent: 'space-between',
+    
   },
   
   overlay: {
     flex: 1,
     height: height * 0.75,
     alignSelf: 'center',
-    justifyContent: 'center',
+    alignItems:"center",
     marginVertical: height * 0.02,
     borderRadius: normalizeSize(14),
+    // justifyContent:"space-between"
   },
   
   ImageHeader: {
@@ -65,7 +66,6 @@ const RankinStyle = StyleSheet.create({
   
   searchContainer: {
     flexDirection: 'row',
-    width: '100%',
     justifyContent: 'center',
   },
   
@@ -188,7 +188,6 @@ const RankinStyle = StyleSheet.create({
     borderColor: "#FF5733",
     backgroundColor: "#f0f0f0",
     marginBottom: height * 0.02,
-    // width: '90%',
     alignSelf: 'center',
   },
   
@@ -198,8 +197,8 @@ const RankinStyle = StyleSheet.create({
     padding: normalizeSize(10),
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: height * 0.15,
-    width: width * 0.43,
+    minHeight: height * 0.5,
+    width: width * 0.85,
     margin: normalizeSize(5),
     borderWidth: 1,
     borderColor: "#FF5733",
@@ -292,4 +291,4 @@ Dimensions.addEventListener('change', () => {
 
 });
 
-export default RankinStyle;
+export default AnnonceInfoStyles;
