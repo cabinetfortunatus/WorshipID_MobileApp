@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { View, Text, TouchableOpacity, Image, FlatList, TextInput } from 'react-native';
+import React, { useState, useMemo, useEffect } from 'react';
+import { View, Text, TouchableOpacity, Image, FlatList, TextInput, Alert } from 'react-native';
 import RankinStyle from '../../styles/RankingStyle';
 import { useNavigation } from '@react-navigation/native';
 import GradientText from "react-native-gradient-texts";
@@ -7,17 +7,26 @@ import ConstRanking from './ConstRanking';
 import { RankingData } from './RankingData';
 import * as Progress from 'react-native-progress';
 import { Dimensions } from 'react-native';
+import {Axios} from '../api/axios';
+import RNFS from 'react-native-fs';
 
 const { width } = Dimensions.get('window');
 
 const RankingForm = () => {
     const navigation = useNavigation();
-    const [activeTab, setActiveTab] = useState(null);
-
+    const [sortedData, setSortedData] = useState([]);
+    const [EventStats, setEventStats] = useState([]);
+    const [activeTab, setActiveTab] = useState('general');
+    const axios = Axios();
     const getNestedValue = (obj, path) => {
         return path.split('.').reduce((acc, part) => acc && acc[part], obj) || 0;
     };
-
+    const loadImage = async (blob, id) => {
+        if (!blob) return null; 
+        const path = `${RNFS.CachesDirectoryPath}/${id}_${Date.now()}.jpg`;
+        await RNFS.writeFile(path, blob, 'base64');
+        return `file://${path}`;
+      };
     const rankingConfig = useMemo(() => ({
         general: {
             icon: require('../../assets/icons/award.png'),
@@ -41,20 +50,44 @@ const RankingForm = () => {
         }
     }), []);
 
-    const sortedData = useMemo(() => {
-        if (!activeTab || !rankingConfig[activeTab]) return [];
-        return [...rankingConfig[activeTab].data].sort((a, b) => {
-            const key = rankingConfig[activeTab].sortKey;
-            return getNestedValue(b, key) - getNestedValue(a, key);
-        });
-    }, [activeTab, rankingConfig]);
+    const getrankingData = async () => {
+        try {
+            const response = await axios.get('/members/ranking');
+            const updatedData = await Promise.all(
+                response.data.map(async (item) => {
+                  const ImageUri = await loadImage(item.Image, item.id);
+                  return { ...item, ImageUri };
+                })
+              );
+            console.log(response.data);
+            setSortedData(updatedData);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    const getEventRanking = async () => {
+        try {
+            const response = await axios.get('/event/stats');
+            console.log(response.data);
+            setEventStats(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        getrankingData();
+        getEventRanking();
+    }, []);
+
+  
 
     const renderItem = ({ item, index }) => {
         if (activeTab === 'general') {
             return (
                 <View style={RankinStyle.rankingDetails}>
                     <Image
-                        source={item.general.image}
+                        source={{ uri: item.ImageUri }}
                         style={{ 
                             width: width * 0.12, 
                             height: width * 0.12, 
@@ -63,13 +96,13 @@ const RankingForm = () => {
                     />
                     <View style={{ marginLeft: width * 0.03, flex: 1 }}>
                         <Text style={RankinStyle.TextValue}>
-                            {item.general.firstname} {item.general.name}
+                            {item.First_name} {item.Name}
                         </Text>
                         <Text style={RankinStyle.TextValue}>
-                            Points: {item.general.points}
+                            Points: {item.Score}
                         </Text>
                         <Text style={RankinStyle.TextValue}>
-                            Rang: {item.general.rang}
+                            Rang: {index+1}
                         </Text>
                     </View>
                 </View>
@@ -105,21 +138,21 @@ const RankingForm = () => {
                     />
                     <View style={{ flex: 1, marginLeft: width * 0.03 }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <Text style={RankinStyle.rankTitle}>{item.nom}</Text>
+                            <Text style={RankinStyle.rankTitle}>{item.nom_evenement}</Text>
                             <Text style={RankinStyle.rankValue}>
                                 {rank}{rank === 1 ? "er" : "e"}
                             </Text>
                         </View>
                         <Progress.Bar
-                            progress={item.progression / 100}
+                            progress={item.taux_participation / 100}
                             width={width * 0.45}
                             color="#4983F6"
                         />
                         <Text style={RankinStyle.rankSubText}>
-                            {item.progression}%{"\n"}{item.participants} participants
+                            {item.taux_participation}%{"\n"}{item.nombre_total} participants
                         </Text>
                         <Text style={RankinStyle.tags}>
-                            {item.tags.join(' • ')}
+                            {item.nombre_present}  présents, {item.nombre_absent} absents
                         </Text>
                     </View>
                 </View>
@@ -148,21 +181,7 @@ const RankingForm = () => {
                     />
                     <Text style={RankinStyle.rankTitle}>{config.title}</Text>
                     
-                    {type === 'participation' && (
-                        <Progress.Bar
-                            progress={RankingData.classements.participation.pourcentage / 100}
-                            width={width * 0.25}
-                            color="#4983F6"
-                        />
-                    )}
                     
-                    <Text style={RankinStyle.rankValue}>
-                        {config.displayFields.mainValue}
-                    </Text>
-                    
-                    <Text style={RankinStyle.rankSubText}>
-                        {config.displayFields.subValue}
-                    </Text>
                 </View>
             </TouchableOpacity>
         );
@@ -170,30 +189,6 @@ const RankingForm = () => {
 
     return (
         <View style={RankinStyle.BackGroundView}>
-            <View style={RankinStyle.searchContainer}>
-                <View style={RankinStyle.searchBar}>
-                    <TouchableOpacity>
-                        <Image 
-                            source={require('../../assets/icons/search.png')} 
-                            style={{ width: width * 0.05, height: width * 0.05 }}
-                        />
-                    </TouchableOpacity>
-
-                    <TextInput
-                        style={RankinStyle.searchInput}
-                        placeholder="rechercher..."
-                        placeholderTextColor="#9CA3AF"
-                    />
-
-                    <TouchableOpacity>
-                        <Image 
-                            source={require('../../assets/icons/short.png')} 
-                            style={{ width: width * 0.05, height: width * 0.05 }}
-                        />
-                    </TouchableOpacity>
-                </View>
-            </View>
-
             <TouchableOpacity 
                 style={{ alignSelf: 'center' }}
                 onPress={() => navigation.navigate("Home")}
@@ -222,7 +217,7 @@ const RankingForm = () => {
 
             {activeTab && (
                 <FlatList
-                    data={sortedData}
+                    data={activeTab == "general" ? sortedData: EventStats}
                     renderItem={renderItem}
                     keyExtractor={(item, index) => `${activeTab}-${index}`}
                     contentContainerStyle={RankinStyle.Scroll}

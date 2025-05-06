@@ -33,6 +33,7 @@ const AproposStyle = StyleSheet.create({
   icon: {
     width: normalize(15),
     height: normalize(15),
+    tintColor: '#7B5EC7',
   },
   infoCard: {
     backgroundColor: '#FFF',
@@ -124,11 +125,11 @@ const AproposStyle = StyleSheet.create({
     padding: normalize(16)
   },
   besoinsText: {
-    paddingTop: height * 0.05,
+    paddingTop: height * 0.02,
     marginHorizontal: width * 0.05,
     fontSize: normalize(12),
     color: '#666',
-    marginBottom: height * 0.01,
+
   },
   tabBarContainer: {
     flexDirection: 'row',

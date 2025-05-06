@@ -8,6 +8,7 @@ import CustomButton from './Button/CustomButton';
 import ImagePickerComponent from './ImagePicker';
 import { membershipStyles } from '../../styles/membershipStyles';
 import { inputStyles } from '../../styles/inputStyles';
+import {Axios} from "../api/axios";
 
 const INITIAL_FORM_DATA = {
   lastName: '',
@@ -27,7 +28,7 @@ const MembershipForm = () => {
   const [countryCode, setCountryCode] = useState('+243');
   const [countryFlag, setCountryFlag] = useState('🇨🇩');
   const [phoneNumber, setPhoneNumber] = useState('');
-
+  const axios = Axios();
   const handleChange = (field, value) => {
     setFormData(prevData => ({
       ...prevData,
@@ -67,17 +68,47 @@ const MembershipForm = () => {
     return true;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (validateForm()) {
-      const submissionData = {
-        ...formData,
-        profileImage: selectedImage,
-        fullPhoneNumber: countryCode + phoneNumber
-      };
+      const form = new FormData();
 
-      console.log('Formulaire soumis:', submissionData);
-      Alert.alert('Succès', 'Votre formulaire a été soumis avec succès');
+      form.append("Name", formData.lastName);
+      form.append("First_name", formData.firstName);
+      form.append("Adress", formData.address);
+      form.append("Gender", formData.gender);
+      form.append("Phone", formData.phone);
+    
+      if (selectedImage) {
+        form.append("Image", {
+          uri: selectedImage.uri,
+          type: selectedImage.type || "image/jpeg",
+          name: selectedImage.fileName || "photo.jpg",
+        });
+      }
+   
+    try{
+        
+        let response = await axios.post('/members/', form, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          }} )
+        .then((response) =>{
+            console.log(response)
+            navigation.navigate('Login')
+            Alert.alert("Vous êtes inscrit avec succès!")
+        })
+        .catch((error)=>{
+            console.error(error)
+        })
+        .finally(() => {
+
+        })
     }
+    catch(error){
+        console.error( error)
+    }
+    }
+   
   };
 
   return (

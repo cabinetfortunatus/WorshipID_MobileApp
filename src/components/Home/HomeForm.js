@@ -1,12 +1,25 @@
 import React from 'react';
 import { View, Text,  Image, SafeAreaView,ScrollView } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import GradientText from "react-native-gradient-texts";
 import MenuItem from './MenuItem';
 import HomeStyle from '../../styles/HomeStyle';
+import { useState, useEffect } from 'react';
+
+
 
 const HomeScreen = () => {
+const [username, setUsername] = useState("");
 const navigation = useNavigation();
+const getUsername = async () => {
+    pseudo = await AsyncStorage?.getItem('Username');
+    setUsername(pseudo)
+}
+
+useEffect(() => {
+    getUsername()
+},[])
 
   return (
         <View>
@@ -55,12 +68,12 @@ const navigation = useNavigation();
                     onPress={() => navigation.navigate('News')}
                 /> */}
 
-                <MenuItem
+                {/* <MenuItem
                     icon={require('../../assets/icons/preach.png')}
                     title="Annonces"
                     subtitle="Les informations importantes et se mises à jour pour les membres de l'église sont toujours ici avec les dernières nouveautés, partenaires et des opportunités d'engagement envers l'église."
                     onPress={() => navigation.navigate('Annonce')}
-                />
+                /> */}
 
                 <MenuItem
                     icon={require('../../assets/icons/Ranking.png')}

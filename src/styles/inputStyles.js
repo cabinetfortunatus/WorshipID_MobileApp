@@ -16,9 +16,10 @@ export const inputStyles = StyleSheet.create({
 
   input: {
     flex: 1,
-    color: '#000', // Changé en noir
-    fontSize: 14,
+    color: '#000',
+    fontSize: 12,
     paddingVertical: 10,
+    overflow: 'hidden',
   },
   inputWrapper: {
     flexDirection: 'row',
@@ -38,11 +39,11 @@ export const inputStyles = StyleSheet.create({
   },
 
   eyeIconContainer: {
-    padding: 10,
+    alignSelf:"center"
   },
   eyeIcon: {
-    width: 24,
-    height: 24,
+    width: 18,
+    height: 18,
     tintColor: '#000',
     opacity: 0.6,
   }

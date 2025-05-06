@@ -1,59 +1,79 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
+  Alert
 } from 'react-native';
 import GroupStyle from '../../styles/GroupStyle';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import ConstGroup from './ConstGroup';
 import GroupCard from './GroupCard';
 import { useNavigation } from '@react-navigation/native';
 import GradientText from "react-native-gradient-texts";
+import {Axios} from "../api/axios";
 
 const GroupForm = () => {
-    
+    const axios = Axios();
+    const [initialData, setinitialData] = useState([]);
+    const [groups, setGroups] = useState([]);
+    const [searchText, setSearchText] = useState("");
+    const [id_member, setId_member] = useState(null);
     const navigation = useNavigation();
-    const Groups = [
-        {
-          id: '1',
-          Name_group: 'Art',
-          Fonction: 'Culte dominical',
-        },
-        {
-          id: '2',
-          Name_group: 'Gospel',
-          Fonction: 'Étude biblique',
-        },
-        {
-          id: '3',
-          Name_group: 'Gospel',
-          Fonction: 'Étude biblique',
-        },
-        {
-          id: '4',
-          Name_group: 'Gospel',
-          Fonction: 'Étude biblique',
-        },
-        {
-          id: '5',
-          Name_group: 'Gospel',
-          Fonction: 'Étude biblique',
-        },
-        {
-          id: '6',
-          Name_group: 'Gospel',
-          Fonction: 'Étude biblique',
-        },
-        {
-          id: '7',
-          Name_group: 'Gospel',
-          Fonction: 'Étude biblique',
-        },
+
+    const GetIdMember = async () => {
+        id = await AsyncStorage?.getItem('id');
+        setId_member(Number(id));
+    }
+    
+    const Getgroup = async () => {
+        try {
+            const response = await axios.get('/groups/');
+            console.log(response.data);
+            setinitialData(response.data);
+            setGroups(response.data);
+        } catch (error) {
+            console.error('Erreur lors de la récupération des groupes:', error);
+        }
+    }
+    const addTogroup = async (id_group, id_member) => {
+        try {
+            const response = await axios.post(`members/${id_member}/groups/${id_group}`);
+            console.log(response.data);
+            Alert.alert('Succès', 'Vous avez été ajouté au groupe avec succès.');
+        } catch (error) {
+            console.error('Erreur lors de l\'ajout au groupe:', error);
+            Alert.alert('Erreur', 'Une erreur est survenue lors de l\'ajout au groupe.');
+        }
+    }
+    const removeFromgroup = async (id_group, id_member) => {
+        try {
+            const response = await axios.delete(`members/${id_member}/groups/${id_group}`);
+            console.log(response.data);
+            Alert.alert('Vous avez été supprimé du groupe');
+        } catch (error) {
+            console.error('Erreur lors du suppression:', error);
+            Alert.alert('Erreur', 'Une erreur est survenue lors du suppression du groupe.');
+        }
+    }
+    useEffect(() => {
+        Getgroup();
+        GetIdMember();
+    }, []);
+
+    useEffect(() => {
+        if(searchText == ""){
+            setGroups(initialData);
+        }
+        else{
+            setGroups(() => initialData.filter((data) => {return ( data.Name_group && data.Name_group.toLowerCase().includes(searchText.toLocaleLowerCase()) )}))
+        }
        
-    ];
+    }, [searchText]);
     return (
     <View>
         <TouchableOpacity
@@ -73,6 +93,7 @@ const GroupForm = () => {
               style={GroupStyle.searchInput}
               placeholder="rechercher..."
               placeholderTextColor="#9CA3AF"
+              onChange={(e) => setSearchText(e.nativeEvent.text)}
             />
             <TouchableOpacity>
                  <Image source={require('../../assets/icons/short.png')}/>
@@ -102,10 +123,13 @@ const GroupForm = () => {
                     showsVerticalScrollIndicator={false}
                     scrollEnabled={true}
                 >
-                    {Groups.length > 0 ? (
-                        Groups.map((group) => (
+                    {groups.length > 0 ? (
+                        groups.map((group) => (
                             <GroupCard
                                 key={group.id}
+                                id_group={group.id}
+                                addTogroup={() => addTogroup(group.id, id_member)}
+                                removeFromgroup={() => removeFromgroup(group.id, id_member)}
                                 Name_group={group.Name_group}
                                 Fonction={group.Fonction}
                             />

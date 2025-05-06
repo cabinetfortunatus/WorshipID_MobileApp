@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Alert, Image } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import CustomInput from '../CustomInput';
 import CustomButton from '../Register/Button/CustomButton';
 import loginStyles from '../../styles/LoginStyles';
 import GradientText from "react-native-gradient-texts";
+import { Axios } from '../api/axios';
+import { SetSession } from '../Auth/Auth';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
@@ -13,15 +16,29 @@ const LoginForm = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const navigation = useNavigation();
+  const axios =  Axios();
+  
 
-  const handleLogin = () => {
+  const handleLogin = async  () => {
     if (!username || !password) {
-      Alert.alert('Erreur', 'Veuillez remplir tous les champs');
+      Alert.alert('Erreur', 'Veuillez remplir tous les champs de connexion');
       return;
     }
-    Alert.alert('Connexion réussie', 'Vous êtes maintenant connecté.', [
-      { text: 'OK', onPress: () => navigation.navigate('Home') }
-    ]);
+    try {
+      const response = await axios.post('/users/Login', { Username:username, Password: password });
+      console.log(response)
+      const Data = response.data;
+      const id_member = Data.id_member.toString();
+      await SetSession(Data.access_token, username, id_member);
+     
+     
+      navigation.navigate('Home');
+  
+    } 
+    catch (error) {
+      Alert.alert('Erreur', 'Nom d’utilisateur ou mot de passe incorrect');
+      console.error('Erreur de connexion', error);
+    }
   };
 
   const handlePasswordReset = () => {
@@ -70,8 +87,8 @@ const LoginForm = () => {
             </>
           ) : (
             <>
-              <CustomInput label="Nouveau mot de passe" placeholder="Entrez votre nouveau mot de passe" value={newPassword} onChangeText={setNewPassword} isPassword secureTextEntry />
-              <CustomInput label="Confirmez votre mot de passe" placeholder="Confirmez votre nouveau mot de passe" value={confirmPassword} onChangeText={setConfirmPassword} isPassword secureTextEntry />
+              <CustomInput label="Nouveau mot de passe" placeholder="Entrez votre nouveau password" value={newPassword} onChangeText={setNewPassword} isPassword secureTextEntry />
+              <CustomInput label="Confirmez votre mot de passe" placeholder="Confirmez votre nouveau password" value={confirmPassword} onChangeText={setConfirmPassword} isPassword secureTextEntry />
               <CustomButton title="Réinitialiser" onPress={handlePasswordReset} />
               <TouchableOpacity onPress={() => setIsForgotPassword(false)}>
                 <Text style={loginStyles.forgotPasswordText}>Retour à la connexion</Text>

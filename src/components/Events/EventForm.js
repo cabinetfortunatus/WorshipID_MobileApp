@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -11,46 +12,38 @@ import EventStyle from '../../styles/EventStyle';
 import ConstEvent from './ConstEvent';
 import ServiceCard from './ServiceCard';
 import { useNavigation } from '@react-navigation/native';
+import {Axios} from "../api/axios";
 
 const EventForm = () => {
-  const services = [
-    {
-      id: '1',
-      title: 'La messe',
-      description: 'Service régulier',
-      icon: require('../../assets/images/messe.png'),
-    },
-    {
-      id: '2',
-      title: 'Cultes',
-      description: 'Prière du matin',
-      icon: require('../../assets/images/colomb.png'),
-    },
-    {
-      id: '3',
-      title: 'Prières',
-      description: 'Service régulier',
-      icon: require('../../assets/images/priere.png'),
-    },
-    {
-      id: '4',
-      title: 'Cours sur la Bible',
-      description: 'Études bibliques',
-      icon: require('../../assets/images/bible.png'),
-    },
-    {
-      id: '5',
-      title: 'Cours sur la Bible',
-      description: 'Études bibliques',
-      icon: require('../../assets/images/bible.png'),
-    },
-    {
-      id: '6',
-      title: 'La messe',
-      description: 'Service régulier',
-      icon: require('../../assets/images/messe.png'),
-    },
-  ];
+
+    const axios = Axios();
+    const [initialData, setinitialData] = useState([]);
+    const [searchText, setSearchText] = useState("");
+    const [events, setEvents] = useState([]);
+  
+    const GetEvent = async () => {
+        try {
+            const response = await axios.get('/event/');
+            console.log(response.data);
+            setinitialData(response.data);
+            setEvents(response.data);
+        } catch (error) {
+            console.error('Erreur lors de la récupération des évenements:', error);
+        }
+    }
+    useEffect(() => {
+        GetEvent();
+    }, []);
+
+    useEffect(() => {
+        if(searchText == ""){
+            setEvents(initialData);
+        }
+        else{
+            setEvents(() => initialData.filter((data) => {return ( data.Name_event && data.Name_event.toLowerCase().includes(searchText.toLocaleLowerCase()) )}))
+        }
+        
+    }, [searchText]);
 
   const navigation = useNavigation();
 
@@ -73,6 +66,7 @@ const EventForm = () => {
             style={EventStyle.searchInput}
             placeholder="Rechercher..."
             placeholderTextColor="#9CA3AF"
+            onChange={(e) => setSearchText(e.nativeEvent.text)}
           />
 
           <TouchableOpacity>
@@ -84,20 +78,22 @@ const EventForm = () => {
       <TouchableOpacity onPress={() => navigation.navigate("Home")}>
         <ConstEvent
           icon={require('../../assets/icons/calendar.png')}
-          title="Événements à suivre..."
-          subtitle="Créer un moment spirituel partagé avec toute la communauté."
+          title= "Événements à suivre..."
+          subtitle= "Créer un moment spirituel partagé avec toute la communauté."
         />
       </TouchableOpacity>
 
       <View style={EventStyle.card}>
         <FlatList
-          data={services}
-          renderItem={({ item }) => (
+          data={events}
+          renderItem={({ item }) => ( 
             <ServiceCard
               key={item.id}
-              title={item.title}
-              description={item.description}
-              icon={item.icon}
+              data = {item}
+              id_group={item.Id_group}
+              title={item.Name_event}
+              description={item.Theme}
+              icon={require('../../assets/images/colomb.png')}
             />
           )}
           keyExtractor={(item) => item.id}
